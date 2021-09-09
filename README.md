@@ -7,10 +7,10 @@ This repository is a part of application ##Education platform##
 * the name of task and branch from master should consist of 3 part:
   * CRS - short name of service (repo);
   * -X: - number in order from 0
-  * short description - in 3-5 words, describing main idea (don't use this part in branch name
+  * short description - in 3-5 words, describing main idea (don't use this part in branch name. 
 Example: 
-     task: CRS-10: create DTO layer with unit tests  
-     branch: CRS-10
+    * task: CRS-10: create DTO layer with unit tests  
+    * branch: CRS-10
 * creating issue - in the rihgt side you should set up assignees, tag and repository
 * when you make pull request - connect it to appropriate task
 
