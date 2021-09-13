@@ -1,10 +1,10 @@
-package ru.education_platform_jma.jmacourseservice;
+package ru.jma.jmacourseservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class JmaCourseserviceApplicationTests {
+class JmaCoursesServiceApplicationTests {
 
 	@Test
 	void contextLoads() {
