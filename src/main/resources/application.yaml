@@ -2,6 +2,13 @@
 spring:
   application:
     name: courses
+    data:
+      mongodb:
+        username: admin
+        password: BestPass
+        database: courseDB
+        host: 127.0.0.1
+        port: 27017
 # Server
 server:
   port: 8082
