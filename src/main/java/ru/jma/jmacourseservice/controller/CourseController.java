@@ -16,11 +16,11 @@ public class CourseController {
 
 
     @GetMapping
-    public Flux<Course> getAllCourses(@RequestParam(required = false) String title) {
-        if (title == null) {
+    public Flux<Course> getAllCourses(@RequestParam(required = false) String name) {
+        if (name == null) {
             return this.courseService.getAllCourses();
         } else {
-            return this.courseService.findByTitleContaining(title);
+            return this.courseService.findByNameContaining(name);
         }
     }
 

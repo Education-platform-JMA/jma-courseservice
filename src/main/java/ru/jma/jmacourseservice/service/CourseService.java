@@ -42,8 +42,8 @@ public class CourseService {
         return this.courseRepository.findByPublished(published);
     }
 
-    public Flux<Course> findByTitleContaining(final String title) {
-        return this.courseRepository.findByTitleContaining(title);
+    public Flux<Course> findByNameContaining(final String name) {
+        return this.courseRepository.findCourseByName(name);
     }
 
 
