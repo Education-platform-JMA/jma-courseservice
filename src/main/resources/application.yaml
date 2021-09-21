@@ -10,3 +10,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+# JMA properties
+jma:
+  service:
+    user: USERS
