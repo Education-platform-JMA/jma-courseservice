@@ -1,22 +1,27 @@
 package ru.jma.jmacourseservice.controller;
 
-import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import ru.jma.jmacourseservice.model.Course;
+import ru.jma.jmacourseservice.dto.CourseDTO;
 import ru.jma.jmacourseservice.service.CourseService;
 
-@RequiredArgsConstructor
+
 @RestController
 @RequestMapping("/api/courses")
 public class CourseController {
 
     private final CourseService courseService;
 
+    @Autowired
+    public CourseController(CourseService courseService) {
+        this.courseService = courseService;
+    }
 
     @GetMapping
-    public Flux<Course> getAllCourses(@RequestParam(required = false) String name) {
+    public Flux<CourseDTO> getAllCourses(@RequestParam(required = false) String name) {
         if (name == null) {
             return this.courseService.getAllCourses();
         } else {
@@ -25,33 +30,33 @@ public class CourseController {
     }
 
     @GetMapping("/{id}")
-    public Mono<Course> getCourseById(@PathVariable("id") String id) {
-        return this.courseService.getCourseById(id);
+    public Mono<CourseDTO> getCourseById(@PathVariable("id") String id) {
+        return courseService.getCourseById(id);
     }
 
     @PostMapping
-    public Mono<Course> saveCourse(@RequestBody Course course) {
-        return this.courseService.saveCourse(course);
+    public Mono<CourseDTO> saveCourse(@RequestBody Mono<CourseDTO> courseDTOMono) {
+        return courseService.saveCourse(courseDTOMono);
     }
 
     @PutMapping("/{id}")
-    public Mono<Course> updateCourse(@RequestBody Course course) {
-        return this.courseService.updateCourse(course);
+    public Mono<CourseDTO> updateCourse(@RequestBody Mono<CourseDTO> courseDTOMono, @PathVariable String id) {
+        return courseService.updateCourse(courseDTOMono, id);
     }
 
     @DeleteMapping("/{id}")
     public Mono<Void> deleteCourse(@PathVariable("id") String id) {
-        return this.courseService.deleteCourse(id);
+        return courseService.deleteCourse(id);
     }
 
     @DeleteMapping
     public Mono<Void> deleteAllCourses() {
-        return this.courseService.deleteAllCourses();
+        return courseService.deleteAllCourses();
     }
 
     @GetMapping("/published")
-    public Flux<Course> findByPublished(boolean published) {
-        return this.courseService.findByPublished(published);
+    public Flux<CourseDTO> findByPublished(boolean published) {
+        return courseService.findByPublished(published);
     }
 
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@SuppressWarnings("java:S116")
 
 @Data
 @Component

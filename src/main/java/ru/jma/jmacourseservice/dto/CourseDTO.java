@@ -1,20 +1,16 @@
-package ru.jma.jmacourseservice.model;
+package ru.jma.jmacourseservice.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import ru.jma.jmacourseservice.model.Node;
 
 import java.util.List;
-
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "CourseCollection")
-public class Course {
-    @Id
+public class CourseDTO {
     private String id;
     private String name;
     private String description;
