@@ -1,20 +1,18 @@
 package ru.jma.jmacourseservice.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/test")
+@Slf4j
 public class TestController {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(TestController.class);
 
     @GetMapping("/1")
     public String test1() {
-        LOGGER.info("request '/courses/test/1' was sent");
+        log.info("request '/courses/test/1' was sent");
         return "test endpoint 1";
     }
 }
