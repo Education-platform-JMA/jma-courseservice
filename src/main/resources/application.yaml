@@ -2,6 +2,12 @@
 spring:
   application:
     name: courses
+  # Security
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/auth/realms/master
 # Server
 server:
   port: 8082
@@ -10,7 +16,15 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+      
 # JMA properties
 jma:
   service:
     user: USERS
+
+# Logging
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
