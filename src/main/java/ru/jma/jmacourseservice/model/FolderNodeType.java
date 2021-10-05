@@ -4,11 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Node {
-    private String id;
-    private String title;
-    private NodeType nodeType;
+public class FolderNodeType implements NodeType {
+    private List<Node> nodes;
 }

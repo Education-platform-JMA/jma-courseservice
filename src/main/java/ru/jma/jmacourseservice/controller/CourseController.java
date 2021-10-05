@@ -1,47 +1,48 @@
 package ru.jma.jmacourseservice.controller;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import ru.jma.jmacourseservice.dto.CourseDTO;
+import ru.jma.jmacourseservice.dto.CourseDto;
+import ru.jma.jmacourseservice.model.Course;
 import ru.jma.jmacourseservice.service.CourseService;
 
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/courses")
 public class CourseController {
 
     private final CourseService courseService;
-
-    @Autowired
-    public CourseController(CourseService courseService) {
-        this.courseService = courseService;
-    }
+    private final ObjectMapper objectMapper;
 
     @GetMapping
-    public Flux<CourseDTO> getAllCourses(@RequestParam(required = false) String name) {
+    public Flux<CourseDto> getAllCourses(@RequestParam(required = false) String name) {
         if (name == null) {
-            return this.courseService.getAllCourses();
+            return courseService.getAllCourses()
+                    .map(course -> objectMapper.convertValue(course, CourseDto.class));
         } else {
-            return this.courseService.findByNameContaining(name);
+            return courseService.findByNameContaining(name)
+                    .map(course -> objectMapper.convertValue(course, CourseDto.class));
         }
     }
 
     @GetMapping("/{id}")
-    public Mono<CourseDTO> getCourseById(@PathVariable("id") String id) {
-        return courseService.getCourseById(id);
+    public Mono<CourseDto> getCourseById(@PathVariable("id") String id) {
+        return courseService.getCourseById(id)
+                .map(course -> objectMapper.convertValue(course, CourseDto.class));
     }
 
     @PostMapping
-    public Mono<CourseDTO> saveCourse(@RequestBody Mono<CourseDTO> courseDTOMono) {
-        return courseService.saveCourse(courseDTOMono);
+    public Mono<Course> saveCourse(@RequestBody Mono<CourseDto> courseDtoMono) {
+        return courseService.saveCourse(courseDtoMono.map(courseDto -> objectMapper.convertValue(courseDto, Course.class)));
     }
 
     @PutMapping("/{id}")
-    public Mono<CourseDTO> updateCourse(@RequestBody Mono<CourseDTO> courseDTOMono, @PathVariable String id) {
-        return courseService.updateCourse(courseDTOMono, id);
+    public Mono<Course> updateCourse(@RequestBody Mono<CourseDto> courseDTOMono, @PathVariable String id) {
+        return courseService.updateCourse((courseDTOMono.map(courseDto -> objectMapper.convertValue(courseDto, Course.class))), id);
     }
 
     @DeleteMapping("/{id}")
@@ -55,8 +56,8 @@ public class CourseController {
     }
 
     @GetMapping("/published")
-    public Flux<CourseDTO> findByPublished(boolean published) {
-        return courseService.findByPublished(published);
+    public Flux<CourseDto> findByPublished(boolean published) {
+        return courseService.findByPublished(published)
+                .map(course -> objectMapper.convertValue(course, CourseDto.class));
     }
-
 }

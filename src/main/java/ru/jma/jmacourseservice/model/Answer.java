@@ -1,11 +1,13 @@
 package ru.jma.jmacourseservice.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.stereotype.Component;
+import lombok.NoArgsConstructor;
 
 @Data
-@Component
+@AllArgsConstructor
+@NoArgsConstructor
 public class Answer {
-    private long code;
+    private Long code;
     private String text;
 }

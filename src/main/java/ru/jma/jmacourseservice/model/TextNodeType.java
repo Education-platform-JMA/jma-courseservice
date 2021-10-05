@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Node {
-    private String id;
-    private String title;
-    private NodeType nodeType;
+public class TextNodeType implements NodeType {
+    private String content;
 }
