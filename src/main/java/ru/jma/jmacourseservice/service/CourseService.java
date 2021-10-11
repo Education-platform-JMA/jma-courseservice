@@ -1,17 +1,17 @@
 package ru.jma.jmacourseservice.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ru.jma.jmacourseservice.model.Course;
 import ru.jma.jmacourseservice.repository.CourseRepository;
 
-@RequiredArgsConstructor
+@RequiredArgsConstructor(onConstructor = @__({@Autowired}))
 @Service
 public class CourseService {
     private final CourseRepository courseRepository;
-
 
     public Flux<Course> getAllCourses() {
         return courseRepository.findAll();
@@ -43,8 +43,8 @@ public class CourseService {
         return courseRepository.findByPublished(published);
     }
 
-    public Flux<Course> findByNameContaining(String name) {
-        return courseRepository.findCourseByName(name);
+    public Flux<Course> findByNameContaining(String keywordInName) {
+        return courseRepository.findCourseByName(keywordInName);
     }
 }
 

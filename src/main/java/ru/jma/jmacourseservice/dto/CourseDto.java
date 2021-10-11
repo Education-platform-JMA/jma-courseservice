@@ -1,15 +1,14 @@
 package ru.jma.jmacourseservice.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.jma.jmacourseservice.model.Node;
 
 import java.util.List;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor(onConstructor = @__({@Autowired}))
 public class CourseDto {
     private String id;
     private String name;

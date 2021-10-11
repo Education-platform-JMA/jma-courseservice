@@ -1,13 +1,12 @@
 package ru.jma.jmacourseservice.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.List;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor(onConstructor = @__({@Autowired}))
 public class Question {
     private String questionField;
     private List<Answer> answers;
