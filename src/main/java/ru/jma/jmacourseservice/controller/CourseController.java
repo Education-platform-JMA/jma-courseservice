@@ -20,8 +20,8 @@ public class CourseController {
     private final CourseService courseService;
 
     @GetMapping
-    public Flux<CourseDto> getAllCourses(@RequestParam(required = false) String name) {
-        return (StringUtils.isBlank(name) ? courseService.getAllCourses() : courseService.findByNameContaining(name))
+    public Flux<CourseDto> getAllCourses(@RequestParam(required = false) String courseName) {
+        return (StringUtils.isBlank(courseName) ? courseService.getAllCourses() : courseService.findByNameContaining(courseName))
                 .map(CourseMapper.INSTANCE::toDto);
     }
 
